@@ -96,7 +96,13 @@ connect <- function(host = "127.0.0.1", port = 9200, path = NULL,
   transport_schema = "http", user = NULL, pwd = NULL,
   headers = NULL, cainfo = NULL, force = FALSE,
   errors = "simple", warn = TRUE, ignore_version = FALSE, ...) {
-
+  
+  # custom to local setup
+  host = Sys.getenv("ES_ADDR")
+  transport_schema = "https"
+  user = Sys.getenv("ES_USER")
+  pwd = Sys.getenv("ES_PWD")
+  
   Elasticsearch$new(host = host, port = port, path = path,
       transport_schema = transport_schema, user = user, pwd = pwd,
       headers = headers, cainfo = cainfo, force = force,
